@@ -19,6 +19,12 @@ const appointments = [
   { time: "15:30", client: "Kamila R.", service: "Маникюр", specialist: "Aigerim", status: "Нужно подтвердить", tone: "warning" },
 ];
 
+const quickLinks = [
+  { href: "/appointments", icon: CalendarDays, label: "Календарь" },
+  { href: "/clients", icon: UsersRound, label: "Клиенты" },
+  { href: "/services", icon: Scissors, label: "Услуги" },
+] as const;
+
 const toneClass: Record<string, string> = {
   success: "bg-[#e5f0e8] text-[#3f7159]",
   accent: "bg-[#eee5d5] text-[#866735]",
@@ -154,19 +160,12 @@ export default function DashboardPage() {
       </section>
 
       <section className="mt-5 grid grid-cols-3 gap-2.5">
-        {[
-          ["/appointments", CalendarDays, "Календарь"],
-          ["/clients", UsersRound, "Клиенты"],
-          ["/services", Scissors, "Услуги"],
-        ].map(([href, Icon, label]) => {
-          const Component = Icon as typeof CalendarDays;
-          return (
-            <Link key={String(href)} href={String(href)} className="panel flex min-h-[82px] flex-col justify-between rounded-[18px] p-3">
-              <Component className="size-[18px] text-[#8d7044]" strokeWidth={2.2} />
-              <div className="text-[11px] font-extrabold">{String(label)}</div>
-            </Link>
-          );
-        })}
+        {quickLinks.map(({ href, icon: Icon, label }) => (
+          <Link key={href} href={href} className="panel flex min-h-[82px] flex-col justify-between rounded-[18px] p-3">
+            <Icon className="size-[18px] text-[#8d7044]" strokeWidth={2.2} />
+            <div className="text-[11px] font-extrabold">{label}</div>
+          </Link>
+        ))}
       </section>
     </>
   );
