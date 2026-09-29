@@ -1,69 +1,93 @@
-# Implementation Plan
-
-Break implementation into small, verifiable phases.
+# Implementation Plan — Atelier OS
 
 ## Phase 0 — Discovery
-- [ ] Project brief approved
-- [ ] Architecture chosen
-- [ ] Design system defined
-- [ ] Required external docs checked
-- [ ] Acceptance criteria defined
+- [x] Project brief defined
+- [x] Architecture chosen
+- [x] Initial design system defined
+- [x] Telegram Mini App chosen as primary product runtime
+- [x] Official Telegram Mini App docs checked
+- [x] Acceptance criteria defined
 
 ## Phase 1 — Foundation
-- [ ] App scaffold
-- [ ] Environment variables template
-- [ ] Core layout
-- [ ] Routing
-- [ ] Base design tokens
-- [ ] Error handling
-- [ ] Lint/typecheck/test scripts
+- [x] Next.js app scaffold
+- [x] environment template
+- [x] routing
+- [x] Supabase client foundation
+- [x] initial PostgreSQL/RLS schema
+- [x] GitHub CI
+- [x] Telegram bridge loaded
+- [x] safe-area handling
+- [x] Telegram haptic helper
+- [x] server-side initData validator
+- [x] mobile app shell + bottom navigation
+- [x] Manrope typography pass
+- [x] dashboard clarity redesign
+- [x] appointments mobile agenda redesign
+- [x] client CRM mobile redesign
+- [x] ESLint green
+- [x] production build green
+- [ ] browser visual verification
+- [ ] Telegram-device verification
 
-Verification:
-- [ ] app starts
-- [ ] no blocking console errors
-- [ ] baseline responsive layout works
+## Phase 2 — Real identity + data
+- [ ] deploy HTTPS preview
+- [ ] create/select Telegram bot
+- [ ] configure `TELEGRAM_BOT_TOKEN`
+- [ ] configure Main Mini App in BotFather
+- [ ] verify real `initData`
+- [ ] map verified Telegram user to application actor
+- [ ] persist application session
+- [ ] configure Supabase project
+- [ ] apply migrations
+- [ ] real tenant-isolation test
 
-## Phase 2 — Data / backend
-- [ ] schema
-- [ ] migrations
-- [ ] auth/roles
-- [ ] APIs/data access
+## Phase 3 — Core CRUD
 
-Verification:
-- [ ] real read/write test
-- [ ] permissions test
-- [ ] invalid input test
+### Appointments
+- [x] mobile operational agenda UI
+- [ ] create appointment
+- [ ] edit/reschedule
+- [ ] status lifecycle
+- [ ] conflict detection
+- [ ] persistence
 
-## Phase 3 — Core user flows
-Define flow-by-flow.
+### Clients
+- [x] mobile CRM list UI
+- [ ] create
+- [ ] edit
+- [ ] archive
+- [ ] visit history
+- [ ] search
+- [ ] persistence
 
-### Flow A
-Implementation:
-Verification:
+### Dashboard
+- [x] priority-based mobile dashboard
+- [ ] replace fixtures with live KPI queries
+- [ ] reconcile each KPI to transactions
 
-### Flow B
-Implementation:
-Verification:
+## Phase 4 — Team / services / finance
+- [ ] staff CRUD and schedules
+- [ ] services CRUD
+- [ ] payments
+- [ ] finance
+- [ ] analytics
 
-## Phase 4 — Integrations
-For each integration:
-- real credentials/configuration available?
-- test request performed?
-- failure state tested?
-- mock clearly separated?
+## Phase 5 — Telegram polish
+- [ ] Telegram theme synchronization
+- [ ] MainButton/SecondaryButton only where they improve a flow
+- [ ] BackButton integration for detail/edit flows
+- [ ] splash screen assets
+- [ ] iOS Telegram test
+- [ ] Android Telegram test
+- [ ] Desktop Telegram test
+- [ ] low-performance-device motion check
 
-## Phase 5 — Polish
-- [ ] responsive
-- [ ] accessibility
-- [ ] loading/empty/error states
-- [ ] copy
-- [ ] performance sanity check
-
-## Phase 6 — End-to-end verification
+## Phase 6 — End-to-end
 - [ ] critical browser flows
-- [ ] regression checks
-- [ ] production build
-- [ ] deployment smoke test, if deployed
+- [ ] critical Telegram flows
+- [x] production build
+- [ ] Vercel preview
+- [ ] deployment smoke test
 
 ## Done criteria
-Never mark complete based only on generated code or a successful build.
+Generated code, mock data and successful visual rendering are not enough. A feature is done only after the corresponding persistence, permission and user-flow checks pass.

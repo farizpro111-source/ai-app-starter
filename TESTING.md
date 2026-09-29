@@ -1,43 +1,68 @@
-# Testing Standard
+# Testing Standard — Atelier OS
 
-## Minimum checks after meaningful changes
-
-### Code
-- Type checking
-- Linting
-- Relevant unit tests
-- Relevant integration tests
-- Production build where applicable
-
-### Browser
-- Page loads
-- Main controls can be operated
-- Forms submit correctly
-- Loading, empty and error states render
-- No relevant console errors
-- Relevant network requests succeed
-- Responsive check: phone / tablet / desktop when UI changed
-- Keyboard navigation on critical controls
-
-### Data
-- Real persistence verified where required
-- Authorization verified
-- Invalid and boundary values tested
-- Concurrent/conflicting actions considered when applicable
-
-## Bug fix protocol
-1. Reproduce.
-2. Record root cause.
-3. Make smallest safe fix.
-4. Re-run failing scenario.
-5. Run adjacent regression scenario.
-6. Do not redesign unrelated code.
-
-## Integration truthfulness
-Use one of these labels internally:
+## Truth labels
 - REAL + VERIFIED
 - REAL + UNVERIFIED
 - MOCK
 - NOT IMPLEMENTED
 
-Never present the last three as REAL + VERIFIED.
+## Current status
+- CI lint/build: REAL + VERIFIED on GitHub Actions.
+- Telegram bridge: REAL + UNVERIFIED until tested inside Telegram.
+- Telegram initData validator: REAL + UNVERIFIED until tested with a real bot token/session.
+- Mobile app shell: REAL + BUILD VERIFIED; visual/device verification still pending.
+- Supabase integration: REAL + UNVERIFIED until project credentials are connected.
+- Dashboard metrics: MOCK fixtures.
+- Appointment/client persistence: NOT IMPLEMENTED.
+
+## Build acceptance
+- [x] TypeScript production build succeeds.
+- [x] ESLint succeeds.
+- [x] Next.js compiles application routes.
+- [ ] browser rendering verified.
+- [ ] Telegram rendering verified.
+
+## Telegram acceptance
+- app launches from Main Mini App button;
+- `window.Telegram.WebApp` is available;
+- `ready()` and `expand()` execute;
+- top/bottom safe areas do not overlap Telegram controls;
+- profile name/avatar can be read for display;
+- raw initData validates server-side;
+- tampered initData is rejected;
+- initDataUnsafe is never used for authorization;
+- bottom nav is usable with one hand;
+- haptics do not fire when unsupported.
+
+## Viewports
+Primary:
+- Telegram iPhone portrait
+- Telegram Android portrait
+Secondary:
+- Telegram Desktop
+- ordinary browser 390px
+- tablet 768px
+
+## Visual acceptance
+- primary action is obvious;
+- important numbers have enough weight/contrast;
+- status colors include text labels;
+- no horizontal business tables on phone;
+- no clipped labels;
+- no tiny critical controls;
+- reduced motion remains usable.
+
+## Data acceptance
+- tenant A cannot read/write tenant B;
+- owner/admin permission matrix works;
+- specialist permissions are constrained;
+- invalid appointment times fail;
+- negative monetary values fail.
+
+## Before calling Telegram auth complete
+- real bot exists;
+- bot token configured server-side;
+- real Telegram initData passes;
+- fake initData fails;
+- application session is created;
+- application actor is mapped to organization membership.
