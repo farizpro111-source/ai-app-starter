@@ -3,77 +3,90 @@
 ## Phase 0 — Discovery
 - [x] Project brief defined
 - [x] Architecture chosen
-- [x] Design system defined
-- [x] Current external docs checked
-- [x] Acceptance criteria defined in TESTING.md
+- [x] Initial design system defined
+- [x] Telegram Mini App chosen as primary product runtime
+- [x] Official Telegram Mini App docs checked
+- [x] Acceptance criteria defined
 
 ## Phase 1 — Foundation
-- [x] App scaffold authored
-- [x] Environment variables template
-- [x] Core layout
-- [x] Routing
-- [x] Base design tokens
-- [x] Login surface + Supabase client utilities
-- [x] GitHub CI configuration
-- [ ] CI green
-- [ ] Browser verification green
+- [x] Next.js app scaffold
+- [x] environment template
+- [x] routing
+- [x] Supabase client foundation
+- [x] initial PostgreSQL/RLS schema
+- [x] GitHub CI
+- [x] Telegram bridge loaded
+- [x] safe-area handling
+- [x] Telegram haptic helper
+- [x] server-side initData validator
+- [x] mobile app shell + bottom navigation
+- [x] Manrope typography pass
+- [x] dashboard clarity redesign
+- [x] appointments mobile agenda redesign
+- [x] client CRM mobile redesign
+- [ ] CI green for current iteration
+- [ ] browser visual verification
+- [ ] Telegram-device verification
 
-Verification:
-- [ ] app starts
-- [ ] no blocking console errors
-- [ ] baseline responsive layout works
+## Phase 2 — Real identity + data
+- [ ] deploy HTTPS preview
+- [ ] create/select Telegram bot
+- [ ] configure `TELEGRAM_BOT_TOKEN`
+- [ ] configure Main Mini App in BotFather
+- [ ] verify real `initData`
+- [ ] map verified Telegram user to application actor
+- [ ] persist application session
+- [ ] configure Supabase project
+- [ ] apply migrations
+- [ ] real tenant-isolation test
 
-## Phase 2 — Data / backend
-- [x] initial schema
-- [x] initial migration
-- [x] RLS authorization design
-- [x] auth client foundation
-- [ ] real Supabase project credentials configured
-- [ ] real read/write test
-- [ ] permission matrix test
-- [ ] invalid input test
+## Phase 3 — Core CRUD
 
-Internal truth label: REAL + UNVERIFIED until credentials and persistence tests pass.
-
-## Phase 3 — Core user flows
-
-### Flow A — Appointments
-- [x] operational day-calendar UI
-- [ ] create/edit/reschedule/status lifecycle
+### Appointments
+- [x] mobile operational agenda UI
+- [ ] create appointment
+- [ ] edit/reschedule
+- [ ] status lifecycle
+- [ ] conflict detection
 - [ ] persistence
-- [ ] browser and collision tests
 
-### Flow B — Client CRM
-- [x] client list UI
-- [ ] create/edit/archive
-- [ ] visit history and search
-- [ ] persistence and tenant-isolation tests
+### Clients
+- [x] mobile CRM list UI
+- [ ] create
+- [ ] edit
+- [ ] archive
+- [ ] visit history
+- [ ] search
+- [ ] persistence
 
-### Flow C — Dashboard
-- [x] premium dashboard composition
-- [ ] live KPI queries
-- [ ] reconcile every KPI to transactions
+### Dashboard
+- [x] priority-based mobile dashboard
+- [ ] replace fixtures with live KPI queries
+- [ ] reconcile each KPI to transactions
 
 ## Phase 4 — Team / services / finance
 - [ ] staff CRUD and schedules
 - [ ] services CRUD
 - [ ] payments
-- [ ] finance views
+- [ ] finance
 - [ ] analytics
 
-## Phase 5 — Polish
-- [ ] full responsive pass
-- [ ] accessibility audit
-- [ ] loading/empty/error states
-- [ ] copy review
-- [ ] performance sanity check
+## Phase 5 — Telegram polish
+- [ ] Telegram theme synchronization
+- [ ] MainButton/SecondaryButton only where they improve a flow
+- [ ] BackButton integration for detail/edit flows
+- [ ] splash screen assets
+- [ ] iOS Telegram test
+- [ ] Android Telegram test
+- [ ] Desktop Telegram test
+- [ ] low-performance-device motion check
 
-## Phase 6 — End-to-end verification
+## Phase 6 — End-to-end
 - [ ] critical browser flows
-- [ ] regression checks
+- [ ] critical Telegram flows
 - [ ] production build
 - [ ] Vercel preview
 - [ ] deployment smoke test
 
 ## Done criteria
-Never mark complete based only on generated code or successful build.
+Generated code, mock data and successful visual rendering are not enough. A feature is done only after the corresponding persistence, permission and user-flow checks pass.
