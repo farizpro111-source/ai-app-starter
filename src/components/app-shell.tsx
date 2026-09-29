@@ -1,38 +1,42 @@
-import { Bell, ChevronDown, Search } from "lucide-react";
-import { MobileNav, Sidebar } from "@/components/nav";
+import { Bell, ChevronDown, Scissors } from "lucide-react";
+import { BottomNav } from "@/components/nav";
+import { TelegramUserPill } from "@/components/telegram-user-pill";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen lg:flex">
-      <Sidebar />
-      <div className="min-w-0 flex-1">
-        <header className="sticky top-0 z-30 flex h-[72px] items-center justify-between border-b border-black/[.06] bg-[#f7f4ee]/85 px-4 backdrop-blur-xl md:px-7">
-          <div className="hidden items-center gap-2 rounded-xl border border-black/[.07] bg-white/60 px-3 py-2 text-sm text-black/45 shadow-sm md:flex">
-            <Search className="size-4" />
-            <span className="w-56">Поиск клиента, записи, услуги…</span>
-            <kbd className="rounded-md border border-black/10 bg-white px-1.5 py-0.5 text-[10px]">⌘K</kbd>
+    <div className="mx-auto min-h-[100dvh] w-full max-w-[1100px]">
+      <header className="app-safe-top sticky top-0 z-40 border-b border-black/[.065] bg-[#f6f2ea]/92 backdrop-blur-2xl">
+        <div className="flex h-[64px] items-center justify-between px-4 sm:px-5">
+          <div className="flex items-center gap-2.5">
+            <div className="grid size-9 place-items-center rounded-[13px] bg-[#191a17] text-white shadow-[0_7px_18px_rgba(25,26,23,.16)]">
+              <Scissors className="size-4" strokeWidth={2.4} />
+            </div>
+            <div>
+              <div className="text-[13px] font-extrabold tracking-[.11em]">ATELIER</div>
+              <div className="-mt-0.5 text-[10px] font-semibold text-black/38">BEAUTY OS</div>
+            </div>
           </div>
-
-          <div className="text-sm font-semibold tracking-[.12em] md:hidden">ATELIER</div>
 
           <div className="flex items-center gap-2">
-            <button aria-label="Уведомления" className="grid size-10 place-items-center rounded-xl border border-black/[.07] bg-white/65 text-black/60">
-              <Bell className="size-[17px]" />
+            <button
+              aria-label="Уведомления"
+              className="grid size-10 place-items-center rounded-[14px] border border-black/[.08] bg-white/80 text-black/60 shadow-sm"
+            >
+              <Bell className="size-[17px]" strokeWidth={2.2} />
             </button>
-            <button className="flex items-center gap-2 rounded-xl border border-black/[.07] bg-white/65 px-2 py-1.5">
-              <div className="grid size-8 place-items-center rounded-lg bg-[#1f1f1b] text-xs font-semibold text-white">AK</div>
-              <div className="hidden text-left sm:block">
-                <div className="text-xs font-medium">Aruzhan K.</div>
-                <div className="text-[10px] text-black/40">Владелец</div>
-              </div>
-              <ChevronDown className="size-3.5 text-black/35" />
+            <TelegramUserPill />
+            <button aria-label="Меню профиля" className="hidden size-9 place-items-center rounded-xl text-black/35 sm:grid">
+              <ChevronDown className="size-4" />
             </button>
           </div>
-        </header>
+        </div>
+      </header>
 
-        <main className="px-4 pb-28 pt-6 md:px-7 md:pt-8 lg:pb-10">{children}</main>
-      </div>
-      <MobileNav />
+      <main className="px-4 pb-[104px] pt-5 sm:px-5 sm:pt-6 md:px-7">
+        {children}
+      </main>
+
+      <BottomNav />
     </div>
   );
 }
