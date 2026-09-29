@@ -1,88 +1,127 @@
 # Design System — Atelier OS
 
-## Design intelligence source
-UI UX Pro Max reviewed for new-project design-system guidance, accessibility, interaction sizing, consistent iconography and style consistency.
-Reference: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
-
 ## Product pattern
-Premium B2B SaaS / CRM / scheduling dashboard for beauty and grooming businesses.
+Premium Telegram Mini App / operations CRM for barbershops and beauty salons.
 
-## Visual style
-“Quiet Luxury Operations”: editorial restraint, high information quality, hospitality warmth, low-noise finance-software precision.
+## Visual direction
+“Quiet Luxury Mobile Operations”.
+
+The interface should feel like a polished native business app inside Telegram:
+- strong visual hierarchy;
+- clear status colors;
+- compact cards;
+- obvious touch targets;
+- no desktop-sidebar-first composition;
+- no visual ambiguity about what requires attention.
 
 ## Colors
-Primary: `#181816`
-Secondary: `#726E65`
-Accent: `#B79A68`
-Background: `#F5F2EC`
-Surface: `#FFFDF9`
-Text: `#181816`
-Muted: `#726E65`
-Success: `#47745F`
-Warning: `#A97742`
-Danger: `#A65C50`
+Primary: `#191A17`
+Accent: `#A98652`
+Accent soft: `#EFE5D3`
+Background: `#F4F0E8`
+Surface: `#FFFDFA`
+Text: `#171815`
+Muted: `#706D65`
+Success: `#3F7159`
+Success soft: `#E6F1E9`
+Warning: `#9C6B31`
+Warning soft: `#F5EAD9`
+Danger: `#A45249`
+Danger soft: `#F5E5E2`
 
 ## Typography
-Heading: Geist/system sans, tight tracking.
-Body: Geist/system sans.
-Numeric/data: tabular numerals.
-Scale: 11/12/14/16/20/24/32/40.
+Primary family: Manrope.
+Reason: wider/heavier letterforms and high Cyrillic readability at small mobile sizes.
+
+Weights:
+- 500 body
+- 600 secondary information
+- 700 labels
+- 800 headings, metrics and actions
+
+Headings use tight negative tracking, but body copy remains neutral.
+Numeric/data uses tabular numerals.
 
 ## Spacing
-4px base grid. Page gutters: 16px mobile / 24–28px desktop.
+4px base grid.
+Mobile page gutters: 16px.
+Large mobile/tablet: 20–28px.
+Vertical sections: normally 16–20px apart.
 
 ## Radius
-Controls 12px; panels 20–24px; pills fully rounded.
+- compact controls: 13–14px
+- list items: 18–20px
+- large panels: 20–22px
+- status pills: fully rounded
 
-## Shadows
-Low-opacity broad shadows. Avoid stacked heavy shadows and fake 3D effects.
+## Depth
+Use visible but restrained depth:
+- stronger border contrast than the first iteration;
+- broad low-opacity shadows;
+- dark primary cards for emphasis;
+- warm inset/outline highlights.
 
-## Icons
-Lucide only in foundation. SVG icons; no emoji functional controls.
-
-## Component strategy
-1. Existing local component.
-2. shadcn/Radix primitive where behavior/accessibility is useful.
-3. Astryx component/template when it fits stack and visual direction.
-4. Custom component when product-specific behavior or visual system justifies it.
-
-The visual layer is never left at library defaults.
-
-## Tables and dense data
-Desktop retains tabular alignment. Mobile converts rows into semantic cards rather than squeezing columns.
-
-## Forms
-44px+ interactive height where practical, explicit labels, visible focus, inline validation.
+Avoid glassmorphism as the main language.
 
 ## Navigation
-Dark left rail on desktop; compact bottom navigation on mobile. Active state is unmistakable without relying only on color.
+Primary navigation is a fixed Telegram-style bottom bar:
+- Overview
+- Appointments
+- Clients
+- Finance
+- More
 
-## Charts
-Minimal gridlines, direct labels when possible, contextual deltas. No chart without a business question.
+Top bar is compact, app-like and respects Telegram safe area.
+Desktop/sidebar navigation is no longer the primary pattern.
 
-## Responsive breakpoints
-Mobile-first CSS; primary adaptation around 768px and 1024px.
+## Dashboard information priority
+1. Revenue today
+2. Appointment count / free slots
+3. Items requiring attention
+4. Next appointments
+5. Trend / staff load
+6. Secondary modules
 
-## Accessibility
-- keyboard navigation
-- visible focus
-- semantic controls
-- minimum contrast targets
-- reduced motion support
-- no meaning by color alone
-- resilient text wrapping
-- icon buttons receive accessible labels
+## Appointments
+Mobile default is an agenda feed rather than a wide scheduler grid.
+Each appointment must make these immediately visible:
+- start/end time
+- client
+- service
+- specialist
+- amount
+- status
 
-## Anti-patterns to avoid
-- default shadcn visual identity
-- decorative glass everywhere
-- excessive gradients
-- huge empty KPI cards
-- hover-only functionality
-- tiny click targets
-- meaningless animation
-- fake AI labels
-- metrics without source of truth
+A dense grid may be added later as an optional tablet/desktop mode.
 
-## Reference screenshots / URLs
-See `docs/REFERENCES.md`.
+## Clients
+Mobile cards replace compressed tables.
+Show:
+- identity
+- phone
+- visit count
+- last visit
+- LTV
+- VIP status where applicable
+
+## Telegram requirements
+- respect safe area and content safe area;
+- 44px+ touch targets where practical;
+- monitor Telegram theme if/when dynamic theming is enabled;
+- use Telegram haptic feedback for meaningful taps;
+- reduced motion support;
+- no hover-only interactions.
+
+## Anti-patterns
+- desktop SaaS sidebar as primary navigation
+- tiny grey text everywhere
+- very thin font weights
+- ambiguous card hierarchy
+- horizontal data tables on phones
+- hidden status/actions
+- excessive decorative gradients
+- stock shadcn appearance
+- fake live data
+
+## References
+See `docs/REFERENCES.md` and `docs/TELEGRAM-MINI-APP.md`.
