@@ -1,18 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+function subscribe() {
+  return () => undefined;
+}
+
+function getSnapshot() {
+  const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
+  if (!user) return "";
+  return JSON.stringify({
+    name: user.first_name || user.username || "Профиль",
+    photo: user.photo_url || "",
+  });
+}
+
+function getServerSnapshot() {
+  return "";
+}
 
 export function TelegramUserPill() {
-  const [name, setName] = useState("Aruzhan");
-  const [photo, setPhoto] = useState<string | undefined>();
-
-  useEffect(() => {
-    const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
-    if (!user) return;
-
-    setName(user.first_name || user.username || "Профиль");
-    setPhoto(user.photo_url);
-  }, []);
+  const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const data = snapshot ? JSON.parse(snapshot) as { name: string; photo: string } : null;
+  const name = data?.name || "Aruzhan";
+  const photo = data?.photo;
 
   return (
     <div className="flex h-10 items-center gap-2 rounded-[14px] border border-black/[.08] bg-white/80 py-1 pl-1 pr-2.5 shadow-sm">
