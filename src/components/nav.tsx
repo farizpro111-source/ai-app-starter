@@ -18,7 +18,7 @@ const items = [
   { href: "/clients", label: "Клиенты", icon: ContactRound },
   { href: "/finance", label: "Финансы", icon: WalletCards },
   { href: "/settings", label: "Ещё", icon: Grid2X2 },
-];
+] as const;
 
 export function BottomNav() {
   const pathname = usePathname();
