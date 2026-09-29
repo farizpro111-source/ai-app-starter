@@ -6,39 +6,61 @@
 - MOCK
 - NOT IMPLEMENTED
 
-Current foundation:
-- UI shell: REAL + UNVERIFIED until CI/browser check.
-- Supabase integration code: REAL + UNVERIFIED until credentials are connected.
-- Dashboard figures visible in foundation UI: MOCK design fixtures, never production data.
+## Current status
+- Telegram bridge: REAL + UNVERIFIED until tested inside Telegram.
+- Telegram initData validator: REAL + UNVERIFIED until tested with a real bot token/session.
+- Mobile app shell: REAL + UNVERIFIED until CI/browser check.
+- Supabase integration: REAL + UNVERIFIED until project credentials are connected.
+- Dashboard metrics: MOCK fixtures.
 - Appointment/client persistence: NOT IMPLEMENTED.
 
-## Phase 1 acceptance criteria
+## Build acceptance
 - TypeScript production build succeeds.
 - ESLint succeeds.
-- `/dashboard`, `/appointments`, `/clients`, `/login` render.
-- No blocking framework overlay or console errors.
-- Navigation works on desktop and mobile widths.
-- Core interactive targets are keyboard reachable.
+- `/dashboard`, `/appointments`, `/clients` render.
+- no blocking Next.js errors.
 
-## Data acceptance criteria
-- Tenant A cannot read/write Tenant B records.
-- owner/admin permission matrix works.
-- specialist can update only allowed own appointments.
-- invalid times fail.
+## Telegram acceptance
+- app launches from Main Mini App button;
+- `window.Telegram.WebApp` is available;
+- `ready()` and `expand()` execute;
+- top/bottom safe areas do not overlap Telegram controls;
+- profile name/avatar can be read for display;
+- raw initData validates server-side;
+- tampered initData is rejected;
+- initDataUnsafe is never used for authorization;
+- bottom nav is usable with one hand;
+- haptics do not fire when unsupported.
+
+## Viewports
+Primary:
+- Telegram iPhone portrait
+- Telegram Android portrait
+Secondary:
+- Telegram Desktop
+- ordinary browser 390px
+- tablet 768px
+
+## Visual acceptance
+- primary action is obvious;
+- important numbers have enough weight/contrast;
+- status colors include text labels;
+- no horizontal business tables on phone;
+- no clipped labels;
+- no tiny critical controls;
+- reduced motion remains usable.
+
+## Data acceptance
+- tenant A cannot read/write tenant B;
+- owner/admin permission matrix works;
+- specialist permissions are constrained;
+- invalid appointment times fail;
 - negative monetary values fail.
 
-## Browser checks
-- Desktop 1440px
-- Tablet 768px
-- Mobile 390px
-- Calendar horizontal overflow remains usable.
-- No clipped labels or hidden primary actions.
-- Login failure state is understandable.
-
-## Integration checks before “done”
-- Supabase credentials configured.
-- Migration applied.
-- Real user and membership created.
-- Client write/read/update verified.
-- Appointment write/read/update verified.
-- RLS denial verified with second tenant.
+## Before calling Telegram auth complete
+- real bot exists;
+- bot token configured server-side;
+- real Telegram initData passes;
+- fake initData fails;
+- application session is created;
+- application actor is mapped to organization membership.
