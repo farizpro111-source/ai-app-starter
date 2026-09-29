@@ -4,7 +4,6 @@ import {
   CalendarDays,
   ChevronRight,
   CirclePlus,
-  Clock3,
   Scissors,
   Sparkles,
   UsersRound,
