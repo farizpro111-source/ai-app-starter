@@ -24,7 +24,8 @@
 - [x] dashboard clarity redesign
 - [x] appointments mobile agenda redesign
 - [x] client CRM mobile redesign
-- [ ] CI green for current iteration
+- [x] ESLint green
+- [x] production build green
 - [ ] browser visual verification
 - [ ] Telegram-device verification
 
@@ -84,7 +85,7 @@
 ## Phase 6 — End-to-end
 - [ ] critical browser flows
 - [ ] critical Telegram flows
-- [ ] production build
+- [x] production build
 - [ ] Vercel preview
 - [ ] deployment smoke test
 
