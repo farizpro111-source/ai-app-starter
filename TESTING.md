@@ -1,43 +1,44 @@
-# Testing Standard
+# Testing Standard — Atelier OS
 
-## Minimum checks after meaningful changes
-
-### Code
-- Type checking
-- Linting
-- Relevant unit tests
-- Relevant integration tests
-- Production build where applicable
-
-### Browser
-- Page loads
-- Main controls can be operated
-- Forms submit correctly
-- Loading, empty and error states render
-- No relevant console errors
-- Relevant network requests succeed
-- Responsive check: phone / tablet / desktop when UI changed
-- Keyboard navigation on critical controls
-
-### Data
-- Real persistence verified where required
-- Authorization verified
-- Invalid and boundary values tested
-- Concurrent/conflicting actions considered when applicable
-
-## Bug fix protocol
-1. Reproduce.
-2. Record root cause.
-3. Make smallest safe fix.
-4. Re-run failing scenario.
-5. Run adjacent regression scenario.
-6. Do not redesign unrelated code.
-
-## Integration truthfulness
-Use one of these labels internally:
+## Truth labels
 - REAL + VERIFIED
 - REAL + UNVERIFIED
 - MOCK
 - NOT IMPLEMENTED
 
-Never present the last three as REAL + VERIFIED.
+Current foundation:
+- UI shell: REAL + UNVERIFIED until CI/browser check.
+- Supabase integration code: REAL + UNVERIFIED until credentials are connected.
+- Dashboard figures visible in foundation UI: MOCK design fixtures, never production data.
+- Appointment/client persistence: NOT IMPLEMENTED.
+
+## Phase 1 acceptance criteria
+- TypeScript production build succeeds.
+- ESLint succeeds.
+- `/dashboard`, `/appointments`, `/clients`, `/login` render.
+- No blocking framework overlay or console errors.
+- Navigation works on desktop and mobile widths.
+- Core interactive targets are keyboard reachable.
+
+## Data acceptance criteria
+- Tenant A cannot read/write Tenant B records.
+- owner/admin permission matrix works.
+- specialist can update only allowed own appointments.
+- invalid times fail.
+- negative monetary values fail.
+
+## Browser checks
+- Desktop 1440px
+- Tablet 768px
+- Mobile 390px
+- Calendar horizontal overflow remains usable.
+- No clipped labels or hidden primary actions.
+- Login failure state is understandable.
+
+## Integration checks before “done”
+- Supabase credentials configured.
+- Migration applied.
+- Real user and membership created.
+- Client write/read/update verified.
+- Appointment write/read/update verified.
+- RLS denial verified with second tenant.
