@@ -1,22 +1,22 @@
-# Implementation Plan
-
-Break implementation into small, verifiable phases.
+# Implementation Plan — Atelier OS
 
 ## Phase 0 — Discovery
-- [ ] Project brief approved
-- [ ] Architecture chosen
-- [ ] Design system defined
-- [ ] Required external docs checked
-- [ ] Acceptance criteria defined
+- [x] Project brief defined
+- [x] Architecture chosen
+- [x] Design system defined
+- [x] Current external docs checked
+- [x] Acceptance criteria defined in TESTING.md
 
 ## Phase 1 — Foundation
-- [ ] App scaffold
-- [ ] Environment variables template
-- [ ] Core layout
-- [ ] Routing
-- [ ] Base design tokens
-- [ ] Error handling
-- [ ] Lint/typecheck/test scripts
+- [x] App scaffold authored
+- [x] Environment variables template
+- [x] Core layout
+- [x] Routing
+- [x] Base design tokens
+- [x] Login surface + Supabase client utilities
+- [x] GitHub CI configuration
+- [ ] CI green
+- [ ] Browser verification green
 
 Verification:
 - [ ] app starts
@@ -24,46 +24,56 @@ Verification:
 - [ ] baseline responsive layout works
 
 ## Phase 2 — Data / backend
-- [ ] schema
-- [ ] migrations
-- [ ] auth/roles
-- [ ] APIs/data access
-
-Verification:
+- [x] initial schema
+- [x] initial migration
+- [x] RLS authorization design
+- [x] auth client foundation
+- [ ] real Supabase project credentials configured
 - [ ] real read/write test
-- [ ] permissions test
+- [ ] permission matrix test
 - [ ] invalid input test
 
+Internal truth label: REAL + UNVERIFIED until credentials and persistence tests pass.
+
 ## Phase 3 — Core user flows
-Define flow-by-flow.
 
-### Flow A
-Implementation:
-Verification:
+### Flow A — Appointments
+- [x] operational day-calendar UI
+- [ ] create/edit/reschedule/status lifecycle
+- [ ] persistence
+- [ ] browser and collision tests
 
-### Flow B
-Implementation:
-Verification:
+### Flow B — Client CRM
+- [x] client list UI
+- [ ] create/edit/archive
+- [ ] visit history and search
+- [ ] persistence and tenant-isolation tests
 
-## Phase 4 — Integrations
-For each integration:
-- real credentials/configuration available?
-- test request performed?
-- failure state tested?
-- mock clearly separated?
+### Flow C — Dashboard
+- [x] premium dashboard composition
+- [ ] live KPI queries
+- [ ] reconcile every KPI to transactions
+
+## Phase 4 — Team / services / finance
+- [ ] staff CRUD and schedules
+- [ ] services CRUD
+- [ ] payments
+- [ ] finance views
+- [ ] analytics
 
 ## Phase 5 — Polish
-- [ ] responsive
-- [ ] accessibility
+- [ ] full responsive pass
+- [ ] accessibility audit
 - [ ] loading/empty/error states
-- [ ] copy
+- [ ] copy review
 - [ ] performance sanity check
 
 ## Phase 6 — End-to-end verification
 - [ ] critical browser flows
 - [ ] regression checks
 - [ ] production build
-- [ ] deployment smoke test, if deployed
+- [ ] Vercel preview
+- [ ] deployment smoke test
 
 ## Done criteria
-Never mark complete based only on generated code or a successful build.
+Never mark complete based only on generated code or successful build.
