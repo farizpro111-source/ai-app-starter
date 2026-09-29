@@ -7,18 +7,20 @@
 - NOT IMPLEMENTED
 
 ## Current status
+- CI lint/build: REAL + VERIFIED on GitHub Actions.
 - Telegram bridge: REAL + UNVERIFIED until tested inside Telegram.
 - Telegram initData validator: REAL + UNVERIFIED until tested with a real bot token/session.
-- Mobile app shell: REAL + UNVERIFIED until CI/browser check.
+- Mobile app shell: REAL + BUILD VERIFIED; visual/device verification still pending.
 - Supabase integration: REAL + UNVERIFIED until project credentials are connected.
 - Dashboard metrics: MOCK fixtures.
 - Appointment/client persistence: NOT IMPLEMENTED.
 
 ## Build acceptance
-- TypeScript production build succeeds.
-- ESLint succeeds.
-- `/dashboard`, `/appointments`, `/clients` render.
-- no blocking Next.js errors.
+- [x] TypeScript production build succeeds.
+- [x] ESLint succeeds.
+- [x] Next.js compiles application routes.
+- [ ] browser rendering verified.
+- [ ] Telegram rendering verified.
 
 ## Telegram acceptance
 - app launches from Main Mini App button;
